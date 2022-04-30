@@ -22,7 +22,13 @@ const Empreducer=(state=initialState,action)=>{
             
             list:action.payload,
                 loading:false
-          }
+          };
+          case "DELETE_DATA":
+            const newlist = state.list.filter((elem) => elem.id !== action.id)
+            return {
+              ...state,
+              list: newlist
+            }
         
        
             

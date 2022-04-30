@@ -6,16 +6,28 @@ export const readData=()=> (dispatch)=>{
         type: "READ_REQUEST",
         
     });
-    const res=axios.get("https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=json").then(res=>{
-       //console.log(res.data.Results)
+    const res=axios.get("https://fakestoreapi.com/products").then(res=>{
+       //console.log(res.data)
        dispatch({
            type:"READ_DATA",
-           payload: res.data.Results
+           payload: res.data
        });
        
     
 
     })
+    
+
+}
+export const deleteData=(id)=>(dispatch)=>{
+const del=axios.delete(`https://fakestoreapi.com/products/${id}`)
+.then(()=>{
+    console.log(id)
+    dispatch({
+        type:"DELETE_DATA",
+        id
+    })
+})
     
 
 }
