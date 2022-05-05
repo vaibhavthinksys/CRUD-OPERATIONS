@@ -16,12 +16,16 @@ const Data = () => {
   useEffect(() => {
     dispatch(readData());
   }, []);
+
+
   const [Modaldata, setModaldata] = useState({
     id: "",
     title: "",
     price: "",
     description: "",
   });
+
+
   const [search, setSearch] = useState("");
   const searchList = list;
   console.log(search.toLowerCase());
@@ -31,6 +35,7 @@ const Data = () => {
         <input
           type="text"
           placeholder="search"
+          value={search}
           onChange={(e) => {
             setSearch(e.target.value);
           }}

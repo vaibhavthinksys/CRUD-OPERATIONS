@@ -2,11 +2,16 @@ import { React, useEffect, useState } from "react";
 import bootstrap from "bootstrap";
 
 import { useDispatch } from "react-redux";
-import { createData,updateData } from "../action";
+import { createData,readData,updateData } from "../action";
 
 const Modals = ({ module }) => {
   const [state, setstate] = useState({});
+
+
   const [show, setshow] = useState(true);
+
+
+
   const [Error, setError] = useState(""); 
 
   useEffect(() => {
@@ -42,6 +47,7 @@ const Modals = ({ module }) => {
       }else{
         dispatch(createData(state,id));
       }
+      dispatch(readData())
       
 
       setstate({
@@ -49,13 +55,15 @@ const Modals = ({ module }) => {
       });
 
       setshow(!show);
+
+
       setError("");
     }
   };
 
   return (
     <div>
-      {show ? (
+      {show && (
         <div
           className="modal fade"
           id="exampleModal"
@@ -87,7 +95,7 @@ const Modals = ({ module }) => {
                       className="form-control"
                       id="id"
                       name="id"
-                      value={state.id}
+                      value={state.id || ""}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -98,7 +106,7 @@ const Modals = ({ module }) => {
                       className="form-control"
                       id="title"
                       name="title"
-                      value={state.title}
+                      value={state.title || ""}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -109,7 +117,7 @@ const Modals = ({ module }) => {
                       className="form-control"
                       id="price"
                       name="price"
-                      value={state.price}
+                      value={state.price || ""}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -120,7 +128,7 @@ const Modals = ({ module }) => {
                       className="form-control"
                       id="description"
                       name="description"
-                      value={state.description}
+                      value={state.description || ""} 
                       onChange={handleInputChange}
                     />
                   </div>
@@ -146,7 +154,7 @@ const Modals = ({ module }) => {
             </div>
           </div>
         </div>
-      ) : null}
+      ) }
     </div>
   );
 };
